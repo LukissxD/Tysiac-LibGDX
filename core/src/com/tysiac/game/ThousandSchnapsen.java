@@ -9,10 +9,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.tysiac.game.defs.Card;
+import com.tysiac.game.defs.enums.CARD_LOCATION_TYPE;
+import com.tysiac.game.defs.enums.COLOR;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.xml.soap.Text;
 
-public class ThousandSchnapsen extends ApplicationAdapter implements InputProcessor {
+public class ThousandSchnapsen extends ApplicationAdapter implements InputProcessor,GameFormGUIInterface {
 	SpriteBatch batch;
 	Texture img;
 	AssetManager assetManager;
@@ -270,4 +276,73 @@ public class ThousandSchnapsen extends ApplicationAdapter implements InputProces
 		return false;
 	}
 
+	@Override
+	public void createBoard(Integer playerNr) {
+
+	}
+
+	@Override
+	public void displayCards(HashMap<CARD_LOCATION_TYPE, ArrayList<Card>> cards) {
+
+	}
+
+	@Override
+	public void displayCards(HashMap<CARD_LOCATION_TYPE, ArrayList<Card>> cards, Boolean withAdditional) {
+
+	}
+
+	@Override
+	public void showTrump(COLOR trump) {
+
+	}
+
+	@Override
+	public void setActionButtonsVisible(boolean visible) {
+
+	}
+
+	@Override
+	public void setActionButtonsEnabled(boolean enabled) {
+
+	}
+
+	@Override
+	public void setActionButtonEnabled(Integer buttonNr, boolean enabled) {
+
+	}
+
+	@Override
+	public void setMyCardsEnabled(boolean enabled) {
+
+	}
+
+	@Override
+	public void displayMessage(String s) {
+
+	}
+
+	@Override
+	public void displayResults(String s) {
+
+	}
+
+	@Override
+	public void enableActionButtonsForBid(Integer bid) {
+
+	}
+
+	@Override
+	public void enableActionButtonsForBomb() {
+
+	}
+
+	@Override
+	public void EnableCardsAndButtonsForExchange(Integer playerNr) {
+
+	}
+
+	@Override
+	public void enableCards(Boolean firstTrick) {
+
+	}
 }
