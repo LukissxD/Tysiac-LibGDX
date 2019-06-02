@@ -1,24 +1,24 @@
-package com.tysiac.game;//package com.tysiac.game;
+//package com.tysiac.game;//package com.tysiac.game;
 //
 //import com.tysiac.game.defs.Card;
 //import com.tysiac.game.defs.Const;
 //import com.tysiac.game.defs.enums.CARD_LOCATION_TYPE;
 //import com.tysiac.game.defs.enums.COLOR;
-////import org.eclipse.swt.SWT;
-////import org.eclipse.swt.events.MouseAdapter;
-////import org.eclipse.swt.events.MouseEvent;
-////import org.eclipse.swt.events.SelectionAdapter;
-////import org.eclipse.swt.events.SelectionEvent;
-////import org.eclipse.swt.graphics.Font;
-////import org.eclipse.swt.layout.GridData;
-////import org.eclipse.swt.layout.GridLayout;
-////import org.eclipse.swt.widgets.*;
+//import org.eclipse.swt.SWT;
+//import org.eclipse.swt.events.MouseAdapter;
+//import org.eclipse.swt.events.MouseEvent;
+//import org.eclipse.swt.events.SelectionAdapter;
+//import org.eclipse.swt.events.SelectionEvent;
+//import org.eclipse.swt.graphics.Font;
+//import org.eclipse.swt.layout.GridData;
+//import org.eclipse.swt.layout.GridLayout;
+//import org.eclipse.swt.widgets.*;
 //
 //import java.util.ArrayList;
 //import java.util.HashMap;
 //import java.util.Random;
 //
-//public class SWTGameFormGUI implements  GameFormGUIInterface,GameFormGUIInterface{
+//public class SWTGameFormGUI implements  GameFormGUIInterface{
 //
 //    private ArrayList<Button>  actionButtons= new ArrayList<>(2);
 //    private ArrayList<Button>  labelButtons=new ArrayList<>(2);;
@@ -372,6 +372,7 @@ package com.tysiac.game;//package com.tysiac.game;
 //                    @Override
 //                    public void widgetSelected(SelectionEvent selectionEvent) {
 //                            executor.actionButtonsForCardExchangeExecuteSelect((playerNr + 1) % 3, CARD_LOCATION_TYPE.PLAYER_B,selectedCard,0);
+//                            selectedCard=null;
 //                    }
 //                });
 //                actionButtons.get(1).setText(Const.CARD_TO_RIGHT);
@@ -381,6 +382,7 @@ package com.tysiac.game;//package com.tysiac.game;
 //                    @Override
 //                    public void widgetSelected(SelectionEvent selectionEvent) {
 //                        executor.actionButtonsForCardExchangeExecuteSelect((playerNr+2)%3,CARD_LOCATION_TYPE.PLAYER_C ,selectedCard,1);
+//                        selectedCard=null;
 //                    }
 //                });
 //            }

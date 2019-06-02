@@ -11,14 +11,11 @@ import com.tysiac.game.defs.enums.GAME_MESSAGE_TYPE;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-//import org.eclipse.swt.widgets.*;
+
 
 public class GameSingleForm {
 
@@ -93,14 +90,16 @@ public class GameSingleForm {
     }
 
     void sortCardsByColorsAndTypes(ArrayList<Card> cardList){
-/*        cardList.sort((o1, o2) -> {
-            if(o1.getColor().compareTo(o2.getColor())==0){
-                return o1.getCardType().compareTo(o2.getCardType());
+        Collections.sort(cardList,new Comparator<Card>() {
+            @Override
+            public int compare(Card o1, Card o2) {
+                if (o1.getColor().compareTo(o2.getColor()) == 0) {
+                    return o1.getCardType().compareTo(o2.getCardType());
+                } else {
+                    return o1.getColor().compareTo(o2.getColor());
+                }
             }
-            else {
-                return o1.getColor().compareTo(o2.getColor());
-            }
-        });*/
+        });
 
 
     }
@@ -168,8 +167,18 @@ public class GameSingleForm {
     void actualizeBidding(Integer actualPlayer, Integer lastBid) {
         if (playerBids == null) playerBids = new HashMap<>(3);
         playerBids.put(actualPlayer, lastBid);
-     /*   long nrOfBiders = playerBids.values().stream().filter(Objects::nonNull).count();
-        long nrOfSkippers = playerBids.values().stream().filter(p -> (p != null) && (p.equals(Const.SKIP_VALUE))).count();
+        long nrOfBiders=0;
+        long nrOfSkippers=0;
+        for(Integer vv:playerBids.values()){
+            if(vv !=null){
+                nrOfBiders++;
+            }
+        }
+        for(Integer vv:playerBids.values()){
+            if(vv !=null && vv.equals(Const.SKIP_VALUE)){
+                nrOfSkippers++;
+            }
+        }
         if (nrOfSkippers == 2) {
             endBidding(nrOfBiders == 2);
         } else {
@@ -177,7 +186,7 @@ public class GameSingleForm {
                 actualBid = lastBid;
             }
             nextBid(actualPlayer, actualBid);
-        }*/
+        }
     }
 
     private void endBidding(boolean noOffers) {
@@ -187,14 +196,12 @@ public class GameSingleForm {
             returnedBiddingResult.put(Const.BID, Const.INITIAL_VALUE);
         }
         else{
-/*
-            long winner=0;==playerBids.entrySet().stream()
-                    .filter(e -> !(e.getValue().equals(Const.SKIP_VALUE)))
-                    .map(Map.Entry::getKey)
-                    .findFirst()
-                    .orElse(-1);
-*/
-            long winner=0;
+            long winner=-1;
+            for(Integer vv:playerBids.keySet()){
+                if(vv !=null && !playerBids.get(vv).equals(Const.SKIP_VALUE)){
+                    winner=vv;
+                }
+            }
             returnedBiddingResult.put(Const.NR, new Long(winner).intValue());
             returnedBiddingResult.put(Const.BID, actualBid);
         }
@@ -324,14 +331,18 @@ public class GameSingleForm {
         }
         ArrayList<Integer> winnerAl=new ArrayList<>(actualTrick.keySet());
         COLOR winningColor = actualTrump == null ? actualTrick.get(lastTrickWinner).getColor() : actualTrump;
-        Integer bestCardValue=0;//actualTrick.values().stream().mapToInt(c->(c.getColor()==winningColor?12:0)+c.getCardType().valueOf()).max().orElse(0);
-        Integer winner=0;/*actualTrick.entrySet().stream()
-                .filter(e -> ((e.getValue().getColor()==winningColor?12:0)+e.getValue().getCardType().valueOf()) ==bestCardValue)
-                .map(Map.Entry::getKey)
-                .findFirst()
-                .orElse(null);*/
-
-        actualDealResults.put(winner,Commons.Nz(actualDealResults.get(winner))+0/*+actualTrick.values().stream().mapToInt(p->p.getCardType().valueOf()).sum()*/);
+        Integer bestCardValue=-1;
+        Integer winner=-1;
+        Integer trickSum=0;
+        for(Integer k:actualTrick.keySet()){
+            trickSum+=actualTrick.get(k).getCardType().valueOf();
+            Integer actualCardValue=(actualTrick.get(k).getColor() == winningColor ? 12 : 0) + actualTrick.get(k).getCardType().valueOf();
+            if(actualCardValue>bestCardValue){
+                bestCardValue=actualCardValue;
+                winner=k;
+            }
+        }
+        actualDealResults.put(winner,trickSum);
         al.add(winner);
         if(newTrump!=null) {
             al.add(newTrump.ordinal());
