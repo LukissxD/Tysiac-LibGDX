@@ -21,7 +21,6 @@ public class MessagesDispatcher extends Thread{
     Boolean stopServing=false;
     //QueueMessageBroadcaster qmr;
 
-
     MessageInfo lastMessage;
 
     Boolean firstTrickCache;
